@@ -1,0 +1,14 @@
+version: '3'
+
+volumes:
+  lopocs_cache:
+
+services:
+  lopocs:
+    build: lopocs/
+    volumes:
+      - ./lopocs/lopocs.yml:/etc/georchestra/lopocs/lopocs.yml
+      - lopocs_cache:/home/app/.cache
+  database:
+    build: postgres/
+

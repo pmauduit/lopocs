@@ -6,6 +6,8 @@ volumes:
 services:
   lopocs:
     build: lopocs/
+    stdin_open: true
+    tty: true
     volumes:
       - ./lopocs/lopocs.yml:/etc/lopocs/lopocs.yml
       - lopocs_cache:/home/app/.cache

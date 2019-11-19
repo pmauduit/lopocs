@@ -8,6 +8,6 @@ RUN mkdir -p /home/app
 RUN git clone https://github.com/Oslandia/lopocs.git /home/app/lopocs
 WORKDIR /home/app/lopocs
 
-ENV LOPOCS_SETTINGS /etc/georchestra/lopocs/lopocs.yml
+ENV LOPOCS_SETTINGS /etc/lopocs/lopocs.yml
 
 RUN pip install 'numpy==1.14.3' &&  pip install -e .

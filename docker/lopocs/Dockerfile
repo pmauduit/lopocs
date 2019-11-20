@@ -5,7 +5,7 @@ RUN apt update && apt install -y libgdal-dev cmake && \
    rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # LASZIP
-RUN git clone  https://github.com/LASzip/LASzip.git--depth 1 /usr/src/LASzip
+RUN git clone  https://github.com/LASzip/LASzip.git --depth 1 /usr/src/LASzip
 WORKDIR /usr/src/LASzip
 RUN cmake . && make && make install
 

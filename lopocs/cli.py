@@ -26,7 +26,7 @@ from lopocs.utils import compute_scale_for_cesium
 
 
 samples = {
-    'airport': 'http://www.liblas.org/samples/LAS12_Sample_withRGB_Quick_Terrain_Modeler_fixed.las',
+    'airport': 'https://github.com/PDAL/data/raw/master/liblas/LAS12_Sample_withRGB_Quick_Terrain_Modeler_fixed.laz',
     'sthelens': 'http://www.liblas.org/samples/st-helens.las',
     'lyon': (3946, 'http://3d.oslandia.com/lyon.laz')
 }
@@ -263,9 +263,12 @@ def _load(filename, table, column, work_dir, server_url, capacity, usewith, srid
         # projection or geocentric
         scale_x, scale_y, scale_z = (0.01, 0.01, 0.01)
 
-    offset_x = summary['bounds']['X']['min'] + (summary['bounds']['X']['max'] - summary['bounds']['X']['min']) / 2
-    offset_y = summary['bounds']['Y']['min'] + (summary['bounds']['Y']['max'] - summary['bounds']['Y']['min']) / 2
-    offset_z = summary['bounds']['Z']['min'] + (summary['bounds']['Z']['max'] - summary['bounds']['Z']['min']) / 2
+    #offset_x = summary['bounds']['X']['min'] + (summary['bounds']['X']['max'] - summary['bounds']['X']['min']) / 2
+    #offset_y = summary['bounds']['Y']['min'] + (summary['bounds']['Y']['max'] - summary['bounds']['Y']['min']) / 2
+    #offset_z = summary['bounds']['Z']['min'] + (summary['bounds']['Z']['max'] - summary['bounds']['Z']['min']) / 2
+    offset_x = summary['bounds']['minx'] + (summary['bounds']['maxx'] - summary['bounds']['minx']) / 2
+    offset_y = summary['bounds']['miny'] + (summary['bounds']['maxy'] - summary['bounds']['miny']) / 2
+    offset_z = summary['bounds']['minz'] + (summary['bounds']['maxz'] - summary['bounds']['minz']) / 2
 
     reproject = ""
 
@@ -286,8 +289,8 @@ def _load(filename, table, column, work_dir, server_url, capacity, usewith, srid
         # recompute offset in new space and start at 0
         pending('Reprojected bounds', nl=True)
         # xmin, ymin, zmin = transform(pini, pout, offset_x, offset_y, offset_z)
-        xmin, ymin, zmin = transform(pini, pout, summary['bounds']['X']['min'], summary['bounds']['Y']['min'], summary['bounds']['Z']['min'])
-        xmax, ymax, zmax = transform(pini, pout, summary['bounds']['X']['max'], summary['bounds']['Y']['max'], summary['bounds']['Z']['max'])
+        xmin, ymin, zmin = transform(pini, pout, summary['bounds']['minx'], summary['bounds']['miny'], summary['bounds']['minz'])
+        xmax, ymax, zmax = transform(pini, pout, summary['bounds']['maxx'], summary['bounds']['maxy'], summary['bounds']['maxz'])
         offset_x, offset_y, offset_z = xmin, ymin, zmin
         click.echo('{} < x < {}'.format(xmin, xmax))
         click.echo('{} < y < {}'.format(ymin, ymax))

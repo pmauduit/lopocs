@@ -319,7 +319,7 @@ class Session():
         if version < '9.6.0':
             cls.execute("""
                 create or replace function to_regclass(text) returns regclass
-                language sql as 'select to_regclass($1::cstring)'
+                language sql as 'select to_regclass($1::text)'
             """)
         cls.execute(LOPOCS_TABLES_QUERY)
 

@@ -19,6 +19,14 @@ services:
     volumes:
       - ./lopocs/lopocs.yml:/etc/lopocs/lopocs.yml
       - lopocs_cache:/home/app/.cache
+      # note: you will need to connect onto the container
+      # and launch manually the following command to get
+      # the sample datas:
+      #
+      # $ lopocs demo --work-dir demos/ --sample airport --cesium
+      #
+      # this will install the UI based on cesium into the
+      # volume below (shared with the frontend service above).
       - lopocs_demo:/home/app/lopocs/demos
     depends_on:
       - database

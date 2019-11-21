@@ -21,7 +21,7 @@ RUN cmake -DWITH_LAZPERF=ON -DLAZPERF_INCLUDE_DIR=/usr/local  \
     && make && make install
 
 RUN mkdir -p /home/app
-RUN git clone https://github.com/Oslandia/lopocs.git /home/app/lopocs
+RUN git clone https://github.com/pmauduit/lopocs.git -b docker-compo /home/app/lopocs
 WORKDIR /home/app/lopocs
 
 ENV LOPOCS_SETTINGS /etc/lopocs/lopocs.yml

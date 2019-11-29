@@ -28,7 +28,8 @@ from lopocs.utils import compute_scale_for_cesium
 samples = {
     'airport': 'https://github.com/PDAL/data/raw/master/liblas/LAS12_Sample_withRGB_Quick_Terrain_Modeler_fixed.laz',
     'sthelens': 'http://www.liblas.org/samples/st-helens.las',
-    'lyon': (3946, 'http://3d.oslandia.com/lyon.laz')
+    'lyon': (3946, 'http://3d.oslandia.com/lyon.laz'),
+    'corse': (2154, 'https://pedrov.beneth.fr/~pedrov/huge.laz')
 }
 
 PDAL_PIPELINE = """

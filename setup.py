@@ -12,19 +12,21 @@ GDAL_MAX = '{0}.{1}.{2}'.format(GDAL_VERSION, GDAL_REVISION_MAJOR, int(GDAL_REVI
 here = os.path.abspath(os.path.dirname(__file__))
 
 requirements = (
+    'werkzeug==0.16.1',
     'flask>=0.12',
     'flask-restplus==0.10.1',
     'flask-cors==3.0.2',
     'psycopg2-binary>=2.6.2',
-    'pyyaml==3.12',
+    'pyyaml==5.2',
     'pygdal >= {0}, <{1}'.format(GDAL_MIN, GDAL_MAX),
     'redis==2.10.5',
     'py3dtiles==1.0.2',
     'click==6.7',
-    'requests==2.13.0',
+    'requests==2.20.0',
     'lazperf==1.2.1',
     'numpy==1.14.3',
-    'pyproj==1.9.5.1'
+    'pyproj==1.9.5.1',
+    'packaging==19.2'
 )
 
 dev_requirements = (

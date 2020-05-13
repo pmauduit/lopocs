@@ -6,11 +6,13 @@ from pathlib import Path
 
 from flask import Flask, Blueprint
 from yaml import load as yload
+from yaml import FullLoader
 
 from lopocs.app import api
 from lopocs.database import Session
 from lopocs.stats import Stats
 from lopocs.conf import Config
+from flask_cors import CORS
 
 # lopocs version
 __version__ = '0.1.dev0'
@@ -21,7 +23,7 @@ def load_yaml_config(filename):
     Open Yaml file, load content for flask config and returns it as a python dict
     """
     content = io.open(filename, 'r').read()
-    return yload(content).get('flask', {})
+    return yload(content, Loader=FullLoader).get('flask', {})
 
 
 def create_app(env='Defaults'):
@@ -56,5 +58,6 @@ def create_app(env='Defaults'):
 
     if Config.STATS:
         Stats.init()
-
+    # enable Cross Origin Resource Sharing for this app
+    CORS(app)
     return app

@@ -13,7 +13,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 requirements = (
     'werkzeug==0.16.1',
-    'flask>=0.12',
+    'flask>=0.12,<1.0',
     'flask-restplus==0.10.1',
     'flask-cors==3.0.2',
     'psycopg2-binary>=2.6.2',

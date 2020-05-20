@@ -17,7 +17,7 @@ RUN git clone https://github.com/PDAL/PDAL.git --depth 1 -b  2.0.1 /usr/src/PDAL
 WORKDIR /usr/src/PDAL
 RUN cmake -DWITH_LAZPERF=ON -DLAZPERF_INCLUDE_DIR=/usr/local  \
           -DWITH_LASZIP=ON                                .   \
-    && make && make install
+    && make -j8 && make install
 
 RUN mkdir -p /home/app
 RUN git clone https://github.com/pmauduit/lopocs.git -b docker-compo --single-branch /home/app/lopocs
